@@ -1,0 +1,4 @@
+{"Time":"2026-06-30T10:00:00.000+02:00","Action":"start","Package":"e2e"}
+{"Time":"2026-06-30T10:00:00.100+02:00","Action":"output","Package":"e2e","Output":"SETUP: installing evictor...\n"}
+{"Time":"2026-06-30T10:00:00.200+02:00","Action":"output","Package":"e2e","Output":"SETUP: evictor install FAILED: context deadline exceeded\n"}
+{"Time":"2026-06-30T10:00:00.300+02:00","Action":"fail","Package":"e2e","Elapsed":0.3}

@@ -4,11 +4,15 @@ import (
 	"encoding/json"
 	"os"
 	"path"
+	"sort"
 	"strings"
 	"testing"
 
+	"github.com/google/uuid"
 	"github.com/samber/lo"
+	"github.com/sebdah/goldie/v2"
 	"github.com/stretchr/testify/require"
+
 	"github.com/castai/gotest2allure/allure"
 )
 
@@ -136,4 +140,95 @@ func TestFull(t *testing.T) {
 			})
 		})
 	})
+}
+
+func TestTopLevelTestPass(t *testing.T) {
+	results := runAndCollect(t, "./testdata/toplevel_pass.jsonl")
+	g := newGoldie(t)
+	g.AssertJson(t, t.Name(), results)
+}
+
+func TestTopLevelTestFail(t *testing.T) {
+	results := runAndCollect(t, "./testdata/toplevel_fail.jsonl")
+	g := newGoldie(t)
+	g.AssertJson(t, t.Name(), results)
+}
+
+func TestSetupFailure(t *testing.T) {
+	dir := t.TempDir()
+	err := _main("./testdata/setup_failure.jsonl", dir, nil)
+	require.NoError(t, err)
+
+	// Read attachment before normalizing results (normalization replaces Source).
+	rawResults := readRawResults(t, dir)
+	require.Len(t, rawResults, 1)
+	require.Len(t, rawResults[0].Attachments, 1)
+	attachment, err := os.ReadFile(path.Join(dir, rawResults[0].Attachments[0].Source))
+	require.NoError(t, err)
+
+	results := normalizeResults(rawResults)
+	g := newGoldie(t)
+	g.AssertJson(t, t.Name(), results)
+
+	gText := goldie.New(t,
+		goldie.WithFixtureDir("testdata/golden"),
+		goldie.WithNameSuffix(".golden.txt"),
+	)
+	gText.Assert(t, t.Name()+"_attachment", attachment)
+}
+
+func newGoldie(t *testing.T) *goldie.Goldie {
+	t.Helper()
+	return goldie.New(t,
+		goldie.WithFixtureDir("testdata/golden"),
+		goldie.WithNameSuffix(".golden.json"),
+	)
+}
+
+func runAndCollect(t *testing.T, inputFile string) []allure.Result {
+	t.Helper()
+	dir := t.TempDir()
+	err := _main(inputFile, dir, nil)
+	require.NoError(t, err)
+	return normalizeResults(readRawResults(t, dir))
+}
+
+func readRawResults(t *testing.T, dir string) []allure.Result {
+	t.Helper()
+	filesD, err := os.ReadDir(dir)
+	require.NoError(t, err)
+
+	var results []allure.Result
+	for _, f := range filesD {
+		if !strings.HasSuffix(f.Name(), "-result.json") {
+			continue
+		}
+		var result allure.Result
+		fh, err := os.Open(path.Join(dir, f.Name()))
+		require.NoError(t, err)
+		err = json.NewDecoder(fh).Decode(&result)
+		require.NoError(t, err)
+		fh.Close()
+		results = append(results, result)
+	}
+	return results
+}
+
+func normalizeResults(results []allure.Result) []allure.Result {
+	for i := range results {
+		results[i].UUID = uuid.Nil
+		results[i].Start = 0
+		results[i].Stop = 0
+		for j := range results[i].Steps {
+			results[i].Steps[j].Start = 0
+			results[i].Steps[j].Stop = 0
+		}
+		for j := range results[i].Attachments {
+			results[i].Attachments[j].Source = "<normalized>"
+		}
+	}
+	sort.Slice(results, func(i, j int) bool {
+		return results[i].FullName < results[j].FullName
+	})
+	return results
 }

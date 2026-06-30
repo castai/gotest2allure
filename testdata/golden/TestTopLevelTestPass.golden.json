@@ -1,0 +1,21 @@
+[
+  {
+    "name": "TestSimple",
+    "fullName": "TestSimple",
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": {
+      "message": "2026-06-30T10:00:00.1+02:00\t=== RUN   TestSimple\n2026-06-30T10:00:00.1+02:00\t    tmp_test.go:10: all good\n2026-06-30T10:00:00.1+02:00\t--- PASS: TestSimple (0.00s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "93b2858b-152b-5694-80bc-5ae65f080113",
+    "testCaseId": "c6841732-879f-5449-9133-13b2cd4176b1",
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  }
+]

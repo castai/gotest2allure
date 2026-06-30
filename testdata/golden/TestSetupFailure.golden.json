@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Test Environment Setup",
+    "fullName": "Test Environment Setup",
+    "stage": "finished",
+    "status": "broken",
+    "statusDetails": {
+      "message": "Setup failed before tests could run."
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "fd248da3-1e22-5844-b8e3-a03697cffa84",
+    "testCaseId": "fd248da3-1e22-5844-b8e3-a03697cffa84",
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  }
+]

@@ -53,7 +53,11 @@ func _main(inputFile, outputDir string, env []string) error {
 
 	l := slog.Default()
 
-	results := GoTestJsonLinesToAllure{results: make(map[string]allure.Result)}
+	results := GoTestJsonLinesToAllure{
+		results:            make(map[string]allure.Result),
+		topLevelResultIDs:  make(map[string]string),
+		suitesWithSubtests: make(map[string]bool),
+	}
 	results.WithEnvironment(env)
 
 	sc := bufio.NewScanner(in)
@@ -77,6 +81,9 @@ func _main(inputFile, outputDir string, env []string) error {
 
 		results.Add(l, entry)
 	}
+
+	results.pruneParentSuites()
+	results.injectSetupFailure()
 
 	if err := os.MkdirAll(outputDir, 0o755); err != nil {
 		return err
@@ -182,12 +189,33 @@ func withoutParams(str string) string {
 type GoTestJsonLinesToAllure struct {
 	results map[string]allure.Result
 	env     map[string]string
+
+	topLevelResultIDs  map[string]string // suiteID → resultID
+	suitesWithSubtests map[string]bool
+
+	packageOutput string
+	packageStatus allure.Status
+	packageStart  int64
+	packageStop   int64
 }
 
 func (g *GoTestJsonLinesToAllure) Add(logger *slog.Logger, entry GoTestLogLine) {
 	suiteID, runID, stepID := parseTestName(entry.Test)
-	if runID == "" {
+
+	if suiteID == "" {
+		g.addPackageOutput(entry)
 		return
+	}
+
+	if runID == "" {
+		runID = suiteID
+	}
+
+	isTopLevel := suiteID == runID
+	if isTopLevel {
+		// Will be pruned later if subtests are found for this suite.
+	} else {
+		g.suitesWithSubtests[suiteID] = true
 	}
 
 	testName := suiteID + "/" + runID
@@ -199,10 +227,16 @@ func (g *GoTestJsonLinesToAllure) Add(logger *slog.Logger, entry GoTestLogLine) 
 	)
 
 	if _, ok := g.results[resultID]; !ok {
+		displayName := testNameWithoutParams
+		fullName := testName
+		if suiteID == runID {
+			displayName = suiteID
+			fullName = suiteID
+		}
 		result := allure.Result{
 			Stage:      allure.Finished,
-			Name:       testNameWithoutParams,
-			FullName:   testName,
+			Name:       displayName,
+			FullName:   fullName,
 			Parameters: testParameters,
 			Start:      entry.Time.UnixMilli(),
 			Stop:       entry.Time.UnixMilli(),
@@ -217,6 +251,9 @@ func (g *GoTestJsonLinesToAllure) Add(logger *slog.Logger, entry GoTestLogLine) 
 		}
 
 		g.results[resultID] = result
+		if isTopLevel {
+			g.topLevelResultIDs[suiteID] = resultID
+		}
 	}
 	result := g.results[resultID]
 	defer func() { g.results[resultID] = result }()
@@ -243,6 +280,53 @@ func (g *GoTestJsonLinesToAllure) Add(logger *slog.Logger, entry GoTestLogLine) 
 		}
 	}
 	appendOutput(entry, &result.ContinuousLog)
+}
+
+func (g *GoTestJsonLinesToAllure) pruneParentSuites() {
+	for suiteID, resultID := range g.topLevelResultIDs {
+		if g.suitesWithSubtests[suiteID] {
+			delete(g.results, resultID)
+		}
+	}
+}
+
+func (g *GoTestJsonLinesToAllure) addPackageOutput(entry GoTestLogLine) {
+	ts := entry.Time.UnixMilli()
+	if g.packageStart == 0 || ts < g.packageStart {
+		g.packageStart = ts
+	}
+	if ts > g.packageStop {
+		g.packageStop = ts
+	}
+
+	appendOutput(entry, &g.packageOutput)
+
+	if s := actionToStatus(entry.Action); s != allure.Unknown && g.packageStatus.Less(s) {
+		g.packageStatus = s
+	}
+}
+
+func (g *GoTestJsonLinesToAllure) injectSetupFailure() {
+	if len(g.results) > 0 || g.packageStatus != allure.Failed {
+		return
+	}
+
+	const name = "Test Environment Setup"
+	resultID := hash(name)
+
+	g.results[resultID] = allure.Result{
+		Stage:         allure.Finished,
+		Name:          name,
+		FullName:      name,
+		Status:        allure.Broken,
+		StatusDetails: allure.StatusDetail{Message: "Setup failed before tests could run."},
+		Start:         g.packageStart,
+		Stop:          g.packageStop,
+		UUID:          uuid.New(),
+		HistoryID:     resultID,
+		TestCaseID:    resultID,
+		ContinuousLog: g.packageOutput,
+	}
 }
 
 func (g *GoTestJsonLinesToAllure) addStep(entry GoTestLogLine, result *allure.Result, stepID string) {
