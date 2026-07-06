@@ -49,7 +49,7 @@ func _main(inputFile, outputDir string, env []string) error {
 	if err != nil {
 		return err
 	}
-	defer in.Close()
+	defer in.Close() //nolint:errcheck
 
 	l := slog.Default()
 
@@ -368,7 +368,7 @@ func (g *GoTestJsonLinesToAllure) WriteResults(dir string) error {
 			if err != nil {
 				return err
 			}
-			defer logFile.Close()
+			defer logFile.Close() //nolint:errcheck
 
 			if _, err := logFile.WriteString(result.ContinuousLog); err != nil {
 				return err
@@ -385,7 +385,7 @@ func (g *GoTestJsonLinesToAllure) WriteResults(dir string) error {
 		if err != nil {
 			return err
 		}
-		defer out.Close()
+		defer out.Close() //nolint:errcheck
 
 		if err := json.NewEncoder(out).Encode(result); err != nil {
 			return err
@@ -426,7 +426,7 @@ func (g *GoTestJsonLinesToAllure) WriteEnvironment(dir string) error {
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck
 
 	for key, value := range g.env {
 		if _, err := fmt.Fprintf(f, "%s=%s\n", key, value); err != nil {

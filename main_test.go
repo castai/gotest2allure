@@ -142,6 +142,16 @@ func TestFull(t *testing.T) {
 	})
 }
 
+func TestFullGoldie(t *testing.T) {
+	dir := t.TempDir()
+	err := _main("./testdata/log.jsonl", dir, []string{"provider=kind", "pr_title=feat(e2e): upload test results to Allure TestOps (LIVE-192)"})
+	require.NoError(t, err)
+
+	results := normalizeResults(readRawResults(t, dir))
+	g := newGoldie(t)
+	g.AssertJson(t, t.Name(), results)
+}
+
 func TestTopLevelTestPass(t *testing.T) {
 	results := runAndCollect(t, "./testdata/toplevel_pass.jsonl")
 	g := newGoldie(t)
@@ -208,7 +218,7 @@ func readRawResults(t *testing.T, dir string) []allure.Result {
 		require.NoError(t, err)
 		err = json.NewDecoder(fh).Decode(&result)
 		require.NoError(t, err)
-		fh.Close()
+		require.NoError(t, fh.Close())
 		results = append(results, result)
 	}
 	return results
@@ -223,6 +233,9 @@ func normalizeResults(results []allure.Result) []allure.Result {
 			results[i].Steps[j].Start = 0
 			results[i].Steps[j].Stop = 0
 		}
+		sort.Slice(results[i].Labels, func(a, b int) bool {
+			return results[i].Labels[a].Name < results[i].Labels[b].Name
+		})
 		for j := range results[i].Attachments {
 			results[i].Attachments[j].Source = "<normalized>"
 		}

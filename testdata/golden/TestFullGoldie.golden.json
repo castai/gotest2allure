@@ -1,0 +1,562 @@
+[
+  {
+    "name": "TestCounterMigrations/controller_orchestrates_counter_migration",
+    "fullName": "TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false",
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": {
+      "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false\n2025-07-10T01:30:49.722+03:00\t    --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false (15.28s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "b2248103-d2a2-5e19-b541-df529773baf3",
+    "testCaseId": "f1fe1238-80b1-5a22-8dbc-77e3ae2acd32",
+    "parameters": [
+      {
+        "name": "tcp",
+        "value": "false"
+      },
+      {
+        "name": "files",
+        "value": "false"
+      }
+    ],
+    "labels": [
+      {
+        "name": "Pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "Provider",
+        "value": "kind"
+      },
+      {
+        "name": "pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "provider",
+        "value": "kind"
+      }
+    ],
+    "steps": [
+      {
+        "name": "controller_is_ready",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/controller_is_ready\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/controller_is_ready (0.00s)\n"
+        }
+      },
+      {
+        "name": "test-app_test_finished_lease_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.511+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/test-app_test_finished_lease_created\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/test-app_test_finished_lease_created (0.00s)\n"
+        }
+      },
+      {
+        "name": "pod_for_migration_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.515+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/pod_for_migration_created\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/pod_for_migration_created (5.12s)\n"
+        }
+      },
+      {
+        "name": "start_pod_migration",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.637+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/start_pod_migration\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/start_pod_migration (0.11s)\n"
+        }
+      },
+      {
+        "name": "migration_completed",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.744+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/migration_completed\n2025-07-10T01:30:34.513+03:00\tI0710 01:30:34.513363  138424 pvc_test.go:51] Tests starting on archs: [amd64]\n2025-07-10T01:30:34.513+03:00\tI0710 01:30:34.513480  138424 env.go:281] Running test features in parallel\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/migration_completed (5.01s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:34.755+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/wait_for_migrated_pod_desired_state\n2025-07-10T01:30:34.755+03:00\tI0710 01:30:34.755522  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-c9750e0f-d244-clone-1]\" phase=\"Running\"\n2025-07-10T01:30:34.756+03:00\tI0710 01:30:34.756422  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:34.756+03:00\tI0710 01:30:34.756430  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-c9750e0f-d244-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:34.757+03:00\tI0710 01:30:34.757170  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/wait_for_migrated_pod_desired_state (0.00s)\n"
+        }
+      },
+      {
+        "name": "notify_test-app_test_finished",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:34.757+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/notify_test-app_test_finished\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/notify_test-app_test_finished (0.00s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state#01",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:34.758+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/wait_for_migrated_pod_desired_state#01\n2025-07-10T01:30:34.758+03:00\tI0710 01:30:34.758615  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-c9750e0f-d244-clone-1]\" phase=\"Succeeded\"\n2025-07-10T01:30:34.759+03:00\tI0710 01:30:34.759765  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:34.759+03:00\tI0710 01:30:34.759772  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-c9750e0f-d244-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:34.761+03:00\tI0710 01:30:34.760815  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:39.516+03:00\tI0710 01:30:39.516637  138424 env.go:281] Running test features in parallel\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/wait_for_migrated_pod_desired_state#01 (5.00s)\n"
+        }
+      },
+      {
+        "name": "numbers_match",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.762+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/numbers_match\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false/numbers_match (0.01s)\n"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  },
+  {
+    "name": "TestCounterMigrations/controller_orchestrates_counter_migration",
+    "fullName": "TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01",
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": {
+      "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01\n2025-07-10T01:30:49.722+03:00\t    --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01 (15.20s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "b04f5d96-cca0-53f5-8dcb-1aeb9ab9da56",
+    "testCaseId": "f1fe1238-80b1-5a22-8dbc-77e3ae2acd32",
+    "parameters": [
+      {
+        "name": "tcp",
+        "value": "false"
+      },
+      {
+        "name": "files",
+        "value": "false#01"
+      }
+    ],
+    "labels": [
+      {
+        "name": "Pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "Provider",
+        "value": "kind"
+      },
+      {
+        "name": "pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "provider",
+        "value": "kind"
+      }
+    ],
+    "steps": [
+      {
+        "name": "controller_is_ready",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/controller_is_ready\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/controller_is_ready (0.00s)\n"
+        }
+      },
+      {
+        "name": "test-app_test_finished_lease_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.514+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/test-app_test_finished_lease_created\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/test-app_test_finished_lease_created (0.00s)\n"
+        }
+      },
+      {
+        "name": "pod_for_migration_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.516+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/pod_for_migration_created\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/pod_for_migration_created (5.12s)\n"
+        }
+      },
+      {
+        "name": "start_pod_migration",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.635+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/start_pod_migration\n2025-07-10T01:30:29.636+03:00\tI0710 01:30:29.636261  138424 conditions.go:246] \"Current Status of the pod resource\" status={\"phase\":\"Running\",\"conditions\":[{\"type\":\"PodReadyToStartContainers\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"Initialized\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:24Z\"},{\"type\":\"Ready\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"ContainersReady\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"PodScheduled\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:24Z\"}],\"hostIP\":\"172.18.0.5\",\"hostIPs\":[{\"ip\":\"172.18.0.5\"}],\"podIP\":\"10.244.1.100\",\"podIPs\":[{\"ip\":\"10.244.1.100\"}],\"startTime\":\"2025-07-09T22:30:24Z\",\"containerStatuses\":[{\"name\":\"counter\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:25Z\"}},\"lastState\":{},\"ready\":true,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5000/te2025-07-10T01:30:29.636+03:00\tsts/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://eefa8c72689210052b28a9f37cc9d353c0fc3b6c4970c0470eb6231486be1a12\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-2lfqh\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"qosClass\":\"BestEffort\"}\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/start_pod_migration (0.01s)\n"
+        }
+      },
+      {
+        "name": "migration_completed",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.653+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/migration_completed\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/migration_completed (5.01s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:34.655+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/wait_for_migrated_pod_desired_state\n2025-07-10T01:30:34.655+03:00\tI0710 01:30:34.654994  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-dd687413-b2b8-clone-1]\" phase=\"Running\"\n2025-07-10T01:30:34.655+03:00\tI0710 01:30:34.655759  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:34.655+03:00\tI0710 01:30:34.655767  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-dd687413-b2b8-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:34.656+03:00\tI0710 01:30:34.656402  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/wait_for_migrated_pod_desired_state (0.00s)\n"
+        }
+      },
+      {
+        "name": "notify_test-app_test_finished",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:34.656+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/notify_test-app_test_finished\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/notify_test-app_test_finished (0.00s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state#01",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:34.658+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/wait_for_migrated_pod_desired_state#01\n2025-07-10T01:30:34.658+03:00\tI0710 01:30:34.658156  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-dd687413-b2b8-clone-1]\" phase=\"Succeeded\"\n2025-07-10T01:30:34.658+03:00\tI0710 01:30:34.658865  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:34.658+03:00\tI0710 01:30:34.658882  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-dd687413-b2b8-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:34.659+03:00\tI0710 01:30:34.659644  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/wait_for_migrated_pod_desired_state#01 (5.00s)\n"
+        }
+      },
+      {
+        "name": "numbers_match",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.661+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/numbers_match\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#01/numbers_match (0.02s)\n"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  },
+  {
+    "name": "TestCounterMigrations/controller_orchestrates_counter_migration",
+    "fullName": "TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02",
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": {
+      "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02\n2025-07-10T01:30:49.722+03:00\t    --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02 (20.22s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "f56c0933-a562-561c-8782-17c3402984de",
+    "testCaseId": "f1fe1238-80b1-5a22-8dbc-77e3ae2acd32",
+    "parameters": [
+      {
+        "name": "tcp",
+        "value": "false"
+      },
+      {
+        "name": "files",
+        "value": "false#02"
+      }
+    ],
+    "labels": [
+      {
+        "name": "Pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "Provider",
+        "value": "kind"
+      },
+      {
+        "name": "pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "provider",
+        "value": "kind"
+      }
+    ],
+    "steps": [
+      {
+        "name": "controller_is_ready",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/controller_is_ready\n2025-07-10T01:30:49.722+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/controller_is_ready (0.00s)\n"
+        }
+      },
+      {
+        "name": "test-app_test_finished_lease_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.512+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/test-app_test_finished_lease_created\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/test-app_test_finished_lease_created (0.00s)\n"
+        }
+      },
+      {
+        "name": "pod_for_migration_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.516+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/pod_for_migration_created\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/pod_for_migration_created (5.12s)\n"
+        }
+      },
+      {
+        "name": "start_pod_migration",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.637+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/start_pod_migration\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/start_pod_migration (0.01s)\n"
+        }
+      },
+      {
+        "name": "migration_completed",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.653+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/migration_completed\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/migration_completed (10.02s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.665+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/wait_for_migrated_pod_desired_state\n2025-07-10T01:30:39.665+03:00\tI0710 01:30:39.664341  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-58ccd57a-05ef-clone-1]\" phase=\"Running\"\n2025-07-10T01:30:39.666+03:00\tI0710 01:30:39.666266  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:39.666+03:00\tI0710 01:30:39.666276  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-58ccd57a-05ef-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:39.666+03:00\tI0710 01:30:39.666281  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/wait_for_migrated_pod_desired_state (0.01s)\n"
+        }
+      },
+      {
+        "name": "notify_test-app_test_finished",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.67+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/notify_test-app_test_finished\n2025-07-10T01:30:39.67+03:00\tI0710 01:30:39.670969  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-65d59909-3cd8-clone-1]\" phase=\"Succeeded\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/notify_test-app_test_finished (0.00s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state#01",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.673+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/wait_for_migrated_pod_desired_state#01\n2025-07-10T01:30:39.673+03:00\tI0710 01:30:39.673890  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-58ccd57a-05ef-clone-1]\" phase=\"Succeeded\"\n2025-07-10T01:30:39.673+03:00\tI0710 01:30:39.673953  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:39.675+03:00\tI0710 01:30:39.675599  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:39.675+03:00\tI0710 01:30:39.675611  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-58ccd57a-05ef-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:39.679+03:00\tI0710 01:30:39.679280  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:39.693+03:00\tI0710 01:30:39.693436  138424 finalizer.go:33] Logs from sidecar-20b40fee-1373-clone-1 - client:==============================================================\n2025-07-10T01:30:39.701+03:00\tI0710 01:30:39.701055  138424 finalizer.go:41] Logs from sidecar-20b40fee-1373-clone-1 - server:==============================================================\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/wait_for_migrated_pod_desired_state#01 (5.00s)\n"
+        }
+      },
+      {
+        "name": "numbers_match",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:44.675+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/numbers_match\n2025-07-10T01:30:44.677+03:00\tI0710 01:30:44.677648  138424 conditions.go:241] \"Checking for condition match\" resource=\"/, Kind= [test-0633de73a77/echo-server-330dcf6f-880a]\" state=\"True\" conditionType=\"Ready\"\n2025-07-10T01:30:44.68+03:00\tI0710 01:30:44.679896  138424 conditions.go:241] \"Checking for condition match\" resource=\"/, Kind= [test-0633de73a77/echo-server-17cd7a8d-c14c]\" state=\"True\" conditionType=\"Ready\"\n2025-07-10T01:30:44.68+03:00\tI0710 01:30:44.679909  138424 conditions.go:241] \"Checking for condition match\" resource=\"/, Kind= [test-0633de73a77/echo-server-61e75475-5c45]\" state=\"True\" conditionType=\"Ready\"\n2025-07-10T01:30:44.68+03:00\tI0710 01:30:44.679902  138424 conditions.go:241] \"Checking for condition match\" resource=\"/, Kind= [test-0633de73a77/echo-server-3a601eda-6616]\" state=\"True\" conditionType=\"Ready\"\n2025-07-10T01:30:44.68+03:00\tI0710 01:30:44.680761  138424 conditions.go:246] \"Current Status of the pod resource\" status={\"phase\":\"Running\",\"conditions\":[{\"type\":\"PodReadyToStartContainers\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:43Z\"},{\"type\":\"Initialized\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"},{\"type\":\"Ready\",\"status\":\"False\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\",\"reason\":\"ContainersNotReady\",\"message\":\"containers with unready status: [echo-server]\"},{\"type\":\"ContainersReady\",\"status\":\"False\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\",\"reason\":\"ContainersNotReady\",\"message\":\"containers with unready status: [echo-server]\"},{\"type\":\"PodScheduled\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"}],\"hostIP\":\"172.18.0.5\",\"hostIPs\":[{\"ip\":\"172.18.0.5\"}],\"podIP\":\"10.244.1.105\",\"podIPs\":[{\"ip\":\"10.244.1.105\"}],\"startTime\":\"2025-07-09T22:30:39Z\",\"containerStatuses\":[{\"name\":\"echo-server2025-07-10T01:30:44.68+03:00\t\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:43Z\"}},\"lastState\":{},\"ready\":false,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5000/tests/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://1c9323255c788c7b9614da35da551c5d6c83cdc5449c11ea1807cf549f7c3012\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-pjhlx\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"qosClass\":\"BestEffort\"}\n2025-07-10T01:30:44.681+03:00\tI0710 01:30:44.681531  138424 conditions.go:246] \"Current Status of the pod resource\" status={\"phase\":\"Running\",\"conditions\":[{\"type\":\"PodReadyToStartContainers\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:40Z\"},{\"type\":\"Initialized\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"},{\"type\":\"Ready\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:41Z\"},{\"type\":\"ContainersReady\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:41Z\"},{\"type\":\"PodScheduled\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"}],\"hostIP\":\"172.18.0.2\",\"hostIPs\":[{\"ip\":\"172.18.0.2\"}],\"podIP\":\"10.244.4.94\",\"podIPs\":[{\"ip\":\"10.244.4.94\"}],\"startTime\":\"2025-07-09T22:30:39Z\",\"containerStatuses\":[{\"name\":\"echo-server\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:40Z\"}},\"lastState\":{},\"ready\":true,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5000/2025-07-10T01:30:44.681+03:00\ttests/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://5197ad61d5ccb1773211cefa10740602f018c2df700fb23338caedb9cf488e03\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-wzhdm\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"qosClass\":\"BestEffort\"}\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#02/numbers_match (0.03s)\n"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  },
+  {
+    "name": "TestCounterMigrations/controller_orchestrates_counter_migration",
+    "fullName": "TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03",
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": {
+      "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03\n2025-07-10T01:30:49.723+03:00\t    --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03 (25.21s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "2af88db4-8fcc-53f0-b618-0b8366c3e1a1",
+    "testCaseId": "f1fe1238-80b1-5a22-8dbc-77e3ae2acd32",
+    "parameters": [
+      {
+        "name": "tcp",
+        "value": "false"
+      },
+      {
+        "name": "files",
+        "value": "false#03"
+      }
+    ],
+    "labels": [
+      {
+        "name": "Pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "Provider",
+        "value": "kind"
+      },
+      {
+        "name": "pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "provider",
+        "value": "kind"
+      }
+    ],
+    "steps": [
+      {
+        "name": "controller_is_ready",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/controller_is_ready\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/controller_is_ready (0.00s)\n"
+        }
+      },
+      {
+        "name": "test-app_test_finished_lease_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.514+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/test-app_test_finished_lease_created\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/test-app_test_finished_lease_created (0.00s)\n"
+        }
+      },
+      {
+        "name": "pod_for_migration_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.516+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/pod_for_migration_created\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/pod_for_migration_created (5.12s)\n"
+        }
+      },
+      {
+        "name": "start_pod_migration",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.636+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/start_pod_migration\n2025-07-10T01:30:29.636+03:00\tI0710 01:30:29.636911  138424 conditions.go:246] \"Current Status of the pod resource\" status={\"phase\":\"Running\",\"conditions\":[{\"type\":\"PodReadyToStartContainers\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"Initialized\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"Ready\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:26Z\"},{\"type\":\"ContainersReady\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:26Z\"},{\"type\":\"PodScheduled\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:24Z\"}],\"hostIP\":\"172.18.0.5\",\"hostIPs\":[{\"ip\":\"172.18.0.5\"}],\"podIP\":\"10.244.1.98\",\"podIPs\":[{\"ip\":\"10.244.1.98\"}],\"startTime\":\"2025-07-09T22:30:24Z\",\"initContainerStatuses\":[{\"name\":\"server\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:25Z\"}},\"lastState\":{},\"ready\":true,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5000/t2025-07-10T01:30:29.636+03:00\tests/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://e6b661d594676d2bbf2e352138f111bf920871df46049d186f6f014547b4c828\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-wp74h\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"containerStatuses\":[{\"name\":\"client\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:25Z\"}},\"lastState\":{},\"ready\":true,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5000/tests/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://4be4266c42676d1b951e17dbcebc91588cef703b808a8cb92325d0d5b9ece4cb\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-wp74h\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"qosClass\":\"BestEffort\"}\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/start_pod_migration (0.01s)\n"
+        }
+      },
+      {
+        "name": "migration_completed",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.645+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/migration_completed\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/migration_completed (10.02s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.662+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/wait_for_migrated_pod_desired_state\n2025-07-10T01:30:39.662+03:00\tI0710 01:30:39.662588  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-579685dc-022b-clone-1]\" phase=\"Running\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/wait_for_migrated_pod_desired_state (0.00s)\n"
+        }
+      },
+      {
+        "name": "notify_test-app_test_finished",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.666+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/notify_test-app_test_finished\n2025-07-10T01:30:39.666+03:00\tI0710 01:30:39.666360  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/notify_test-app_test_finished (0.00s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state#01",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.671+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/wait_for_migrated_pod_desired_state#01\n2025-07-10T01:30:39.671+03:00\tI0710 01:30:39.671031  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-579685dc-022b-clone-1]\" phase=\"Succeeded\"\n2025-07-10T01:30:39.672+03:00\tI0710 01:30:39.672108  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:39.672+03:00\tI0710 01:30:39.672120  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-579685dc-022b-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:39.673+03:00\tI0710 01:30:39.672842  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:39.673+03:00\tI0710 01:30:39.672853  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-65d59909-3cd8-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:39.673+03:00\tI0710 01:30:39.673007  138424 finalizer.go:41] Logs from sidecar-20b40fee-1373 - server:==============================================================\n2025-07-10T01:30:39.673+03:00\ttime=2025-07-09T22:30:25.275Z level=INFO msg=--TestApplicationStart-- module=main\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:25.276Z level=INFO msg=\"No lease name or namespace provided, skipping waiting for test finish\" module=lease\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:25.276Z level=INFO msg=\"Starting readiness server on port 8081\" module=echo-server module=readiness\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:25.277Z level=INFO msg=Listening module=echo-server port=2137\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:25.780Z level=INFO msg=Accepted module=echo-server\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:25.780Z level=INFO msg=\"Read data from client\" module=echo-server bytes=10240 iteration=0\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:25.780Z level=INFO msg=\"Send data to client\" module=echo-server bytes=10240 iteration=0\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:26.861Z level=INFO msg=\"Read data from client\" module=echo-server bytes=10240 iteration=100\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:26.861Z level=INFO msg=\"Send data to client\" module=echo-server bytes=10240 iteration=100\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:27.920Z level=INFO msg=\"Read data from client\" module=echo-server bytes=10240 iteration=200\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:27.920Z level=INFO msg=\"Send data to client\" module=echo-server bytes=10240 iteration=200\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:28.981Z level=INFO msg=\"Read data from client\" module=echo-server bytes=10240 iteration=300\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:28.981Z level=INFO msg=\"Send data to client\" module=echo-server bytes=10240 iteration=300\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:30.176Z level=INFO msg=\"Read data from client\" module=echo-server bytes=10240 iteration=400\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:30.176Z level=INFO msg=\"Send data to client\" module=echo-server bytes=10240 iteration=400\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:31.360Z level=INFO msg=\"Read data from client\" module=echo-server bytes=10240 iteration=500\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:31.360Z level=INFO msg=\"Send data to client\" module=echo-server bytes=10240 iteration=500\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:32.549Z level=INFO msg=\"Read data from client\" module=echo-server bytes=10240 iteration=600\n2025-07-10T01:30:39.673+03:00\t\ttime=2025-07-09T22:30:32.549Z level=INFO msg=\"Send data to client\" module=echo-server bytes=10240 iteration=600\n2025-07-10T01:30:39.673+03:00\tI0710 01:30:39.673435  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/wait_for_migrated_pod_desired_state#01 (10.00s)\n"
+        }
+      },
+      {
+        "name": "numbers_match",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:49.674+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/numbers_match\n2025-07-10T01:30:49.681+03:00\tI0710 01:30:49.681216  138424 conditions.go:241] \"Checking for condition match\" resource=\"/, Kind= [test-0633de73a77/echo-server-61e75475-5c45]\" state=\"True\" conditionType=\"Ready\"\n2025-07-10T01:30:49.681+03:00\tI0710 01:30:49.681219  138424 conditions.go:241] \"Checking for condition match\" resource=\"/, Kind= [test-0633de73a77/echo-server-330dcf6f-880a]\" state=\"True\" conditionType=\"Ready\"\n2025-07-10T01:30:49.688+03:00\tI0710 01:30:49.688380  138424 conditions.go:246] \"Current Status of the pod resource\" status={\"phase\":\"Running\",\"conditions\":[{\"type\":\"PodReadyToStartContainers\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:43Z\"},{\"type\":\"Initialized\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"},{\"type\":\"Ready\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:44Z\"},{\"type\":\"ContainersReady\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:44Z\"},{\"type\":\"PodScheduled\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"}],\"hostIP\":\"172.18.0.5\",\"hostIPs\":[{\"ip\":\"172.18.0.5\"}],\"podIP\":\"10.244.1.105\",\"podIPs\":[{\"ip\":\"10.244.1.105\"}],\"startTime\":\"2025-07-09T22:30:39Z\",\"containerStatuses\":[{\"name\":\"echo-server\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:43Z\"}},\"lastState\":{},\"ready\":true,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5002025-07-10T01:30:49.688+03:00\t0/tests/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://1c9323255c788c7b9614da35da551c5d6c83cdc5449c11ea1807cf549f7c3012\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-pjhlx\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"qosClass\":\"BestEffort\"}\n2025-07-10T01:30:49.688+03:00\tI0710 01:30:49.688401  138424 conditions.go:246] \"Current Status of the pod resource\" status={\"phase\":\"Running\",\"conditions\":[{\"type\":\"PodReadyToStartContainers\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:43Z\"},{\"type\":\"Initialized\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"},{\"type\":\"Ready\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:44Z\"},{\"type\":\"ContainersReady\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:44Z\"},{\"type\":\"PodScheduled\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:39Z\"}],\"hostIP\":\"172.18.0.5\",\"hostIPs\":[{\"ip\":\"172.18.0.5\"}],\"podIP\":\"10.244.1.106\",\"podIPs\":[{\"ip\":\"10.244.1.106\"}],\"startTime\":\"2025-07-09T22:30:39Z\",\"containerStatuses\":[{\"name\":\"echo-server\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:43Z\"}},\"lastState\":{},\"ready\":true,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5002025-07-10T01:30:49.688+03:00\t0/tests/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://bd598ded6628b8373146dbbfd48ed1a57aa0057825d7ae07e4c04ffe622c7ba2\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-f9qnd\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"qosClass\":\"BestEffort\"}\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=false#03/numbers_match (0.03s)\n"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  },
+  {
+    "name": "TestCounterMigrations/controller_orchestrates_counter_migration",
+    "fullName": "TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true",
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": {
+      "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true\n2025-07-10T01:30:49.723+03:00\t    --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true (20.22s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "9ae46ce9-1577-51c3-89b9-d901c5eed160",
+    "testCaseId": "f1fe1238-80b1-5a22-8dbc-77e3ae2acd32",
+    "parameters": [
+      {
+        "name": "tcp",
+        "value": "false"
+      },
+      {
+        "name": "files",
+        "value": "true"
+      }
+    ],
+    "labels": [
+      {
+        "name": "Pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "Provider",
+        "value": "kind"
+      },
+      {
+        "name": "pr_title",
+        "value": "feat(e2e): upload test results to Allure TestOps (LIVE-192)"
+      },
+      {
+        "name": "provider",
+        "value": "kind"
+      }
+    ],
+    "steps": [
+      {
+        "name": "controller_is_ready",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.508+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/controller_is_ready\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/controller_is_ready (0.00s)\n"
+        }
+      },
+      {
+        "name": "test-app_test_finished_lease_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.514+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/test-app_test_finished_lease_created\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/test-app_test_finished_lease_created (0.00s)\n"
+        }
+      },
+      {
+        "name": "pod_for_migration_created",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:24.517+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/pod_for_migration_created\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/pod_for_migration_created (5.12s)\n"
+        }
+      },
+      {
+        "name": "start_pod_migration",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.636+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/start_pod_migration\n2025-07-10T01:30:29.636+03:00\tI0710 01:30:29.636314  138424 conditions.go:246] \"Current Status of the pod resource\" status={\"phase\":\"Running\",\"conditions\":[{\"type\":\"PodReadyToStartContainers\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"Initialized\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:24Z\"},{\"type\":\"Ready\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"ContainersReady\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:25Z\"},{\"type\":\"PodScheduled\",\"status\":\"True\",\"lastProbeTime\":null,\"lastTransitionTime\":\"2025-07-09T22:30:24Z\"}],\"hostIP\":\"172.18.0.5\",\"hostIPs\":[{\"ip\":\"172.18.0.5\"}],\"podIP\":\"10.244.1.96\",\"podIPs\":[{\"ip\":\"10.244.1.96\"}],\"startTime\":\"2025-07-09T22:30:24Z\",\"containerStatuses\":[{\"name\":\"counter\",\"state\":{\"running\":{\"startedAt\":\"2025-07-09T22:30:25Z\"}},\"lastState\":{},\"ready\":true,\"restartCount\":0,\"image\":\"kind-registry:5000/tests/app:latest\",\"imageID\":\"kind-registry:5000/test2025-07-10T01:30:29.636+03:00\ts/app@sha256:cfa2ba1fbb5e43354a58069e53481e1100712553795f1cb102130a33ba69e7b3\",\"containerID\":\"castai-cri-proxy+containerd://4f125d512ed652954343418ad154f64f4fbc0cb304fc60f79d853e7b69759d93\",\"started\":true,\"volumeMounts\":[{\"name\":\"kube-api-access-62rk9\",\"mountPath\":\"/var/run/secrets/kubernetes.io/serviceaccount\",\"readOnly\":true,\"recursiveReadOnly\":\"Disabled\"}]}],\"qosClass\":\"BestEffort\"}\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/start_pod_migration (0.01s)\n"
+        }
+      },
+      {
+        "name": "migration_completed",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:29.644+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/migration_completed\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/migration_completed (10.02s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.661+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/wait_for_migrated_pod_desired_state\n2025-07-10T01:30:39.661+03:00\tI0710 01:30:39.661013  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-65d59909-3cd8-clone-1]\" phase=\"Running\"\n2025-07-10T01:30:39.661+03:00\tI0710 01:30:39.661133  138424 conditions.go:265] \"Current phase\" phase=\"Succeeded\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/wait_for_migrated_pod_desired_state (0.01s)\n"
+        }
+      },
+      {
+        "name": "notify_test-app_test_finished",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.666+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/notify_test-app_test_finished\n2025-07-10T01:30:39.669+03:00\tI0710 01:30:39.668792  138424 finalizer.go:33] Logs from sidecar-20b40fee-1373 - client:==============================================================\n2025-07-10T01:30:39.669+03:00\ttime=2025-07-09T22:30:25.779Z level=INFO msg=--TestApplicationStart-- module=main\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:25.780Z level=INFO msg=\"Start sending data\" module=echo-client\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:25.780Z level=INFO msg=\"Sending data\" module=echo-client iteration=0\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:25.780Z level=INFO msg=\"Received data\" module=echo-client bytes=10240 iteration=0\n2025-07-10T01:30:39.669+03:00\t\tI0709 22:30:25.780965       1 leaderelection.go:257] attempting to acquire leader lease test-0633de73a77/sidecar-20b40fee-1373...\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:26.861Z level=INFO msg=\"Sending data\" module=echo-client iteration=100\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:26.861Z level=INFO msg=\"Received data\" module=echo-client bytes=10240 iteration=100\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:27.920Z level=INFO msg=\"Sending data\" module=echo-client iteration=200\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:27.920Z level=INFO msg=\"Received data\" module=echo-client bytes=10240 iteration=200\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:28.981Z level=INFO msg=\"Sending data\" module=echo-client iteration=300\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:28.981Z level=INFO msg=\"Received data\" module=echo-client bytes=10240 iteration=300\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:30.176Z level=INFO msg=\"Sending data\" module=echo-client iteration=400\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:30.176Z level=INFO msg=\"Received data\" module=echo-client bytes=10240 iteration=400\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:31.359Z level=INFO msg=\"Sending data\" module=echo-client iteration=500\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:31.360Z level=INFO msg=\"Received data\" module=echo-client bytes=10240 iteration=500\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:32.549Z level=INFO msg=\"Sending data\" module=echo-client iteration=600\n2025-07-10T01:30:39.669+03:00\t\ttime=2025-07-09T22:30:32.550Z level=INFO msg=\"Received data\" module=echo-client bytes=10240 iteration=600\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/notify_test-app_test_finished (0.00s)\n"
+        }
+      },
+      {
+        "name": "wait_for_migrated_pod_desired_state#01",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:39.67+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/wait_for_migrated_pod_desired_state#01\n2025-07-10T01:30:39.67+03:00\tI0710 01:30:39.670945  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/wait_for_migrated_pod_desired_state#01 (5.00s)\n"
+        }
+      },
+      {
+        "name": "numbers_match",
+        "status": "passed",
+        "statusDetails": {
+          "message": "2025-07-10T01:30:44.674+03:00\t=== RUN   TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/numbers_match\n2025-07-10T01:30:44.674+03:00\tI0710 01:30:44.674136  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-58ccd57a-05ef-clone-1]\" phase=\"Succeeded\"\n2025-07-10T01:30:44.674+03:00\tI0710 01:30:44.674347  138424 conditions.go:265] \"Current phase\" phase=\"Running\"\n2025-07-10T01:30:44.674+03:00\tI0710 01:30:44.674801  138424 conditions.go:265] \"Current phase\" phase=\"Succeeded\"\n2025-07-10T01:30:44.674+03:00\tI0710 01:30:44.674812  138424 conditions.go:261] \"Checking for phase match\" resource=\"/, Kind= [test-0633de73a77/counter-58ccd57a-05ef-clone-1]\" phase=\"Failed\"\n2025-07-10T01:30:44.675+03:00\tI0710 01:30:44.675563  138424 conditions.go:265] \"Current phase\" phase=\"Succeeded\"\n2025-07-10T01:30:49.723+03:00\t        --- PASS: TestCounterMigrations/controller_orchestrates_counter_migration,_with_tcp=false,_with_files=true/numbers_match (0.03s)\n"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  }
+]
