@@ -1,0 +1,40 @@
+[
+  {
+    "name": "TestFailing",
+    "fullName": "TestFailing",
+    "stage": "finished",
+    "status": "failed",
+    "statusDetails": {
+      "message": "2026-06-30T10:00:00.2+02:00\t=== RUN   TestFailing\n2026-06-30T10:00:00.2+02:00\t    tmp_test.go:15: intentional failure\n2026-06-30T10:00:00.2+02:00\t--- FAIL: TestFailing (0.00s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "78859943-91d8-59ee-889d-c10b4b83b4b6",
+    "testCaseId": "e0bb2ab3-fdf7-547f-bc3f-c1ea12bd78df",
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  },
+  {
+    "name": "TestPassing",
+    "fullName": "TestPassing",
+    "stage": "finished",
+    "status": "passed",
+    "statusDetails": {
+      "message": "2026-06-30T10:00:00.1+02:00\t=== RUN   TestPassing\n2026-06-30T10:00:00.1+02:00\t    tmp_test.go:10: all good\n2026-06-30T10:00:00.1+02:00\t--- PASS: TestPassing (0.00s)\n"
+    },
+    "uid": "00000000-0000-0000-0000-000000000000",
+    "historyId": "6cfd556a-abcc-5ed6-9c7f-0fde32b2893f",
+    "testCaseId": "c24f2eb5-2783-56c1-9f14-1343380036a4",
+    "attachments": [
+      {
+        "name": "Continuous Log",
+        "source": "\u003cnormalized\u003e",
+        "type": "text/plain"
+      }
+    ]
+  }
+]

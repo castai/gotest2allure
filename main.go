@@ -49,11 +49,15 @@ func _main(inputFile, outputDir string, env []string) error {
 	if err != nil {
 		return err
 	}
-	defer in.Close()
+	defer in.Close() //nolint:errcheck
 
 	l := slog.Default()
 
-	results := GoTestJsonLinesToAllure{results: make(map[string]allure.Result)}
+	results := GoTestJsonLinesToAllure{
+		results:            make(map[string]*allure.Result),
+		topLevelResultIDs:  make(map[string]string),
+		suitesWithSubtests: make(map[string]bool),
+	}
 	results.WithEnvironment(env)
 
 	sc := bufio.NewScanner(in)
@@ -77,6 +81,8 @@ func _main(inputFile, outputDir string, env []string) error {
 
 		results.Add(l, entry)
 	}
+
+	results.Finalize()
 
 	if err := os.MkdirAll(outputDir, 0o755); err != nil {
 		return err
@@ -179,63 +185,128 @@ func withoutParams(str string) string {
 	return strings.TrimRight(fieldRe.ReplaceAllString(str, ""), punctuation)
 }
 
+type packageTracker struct {
+	output string
+	status allure.Status
+	start  int64
+	stop   int64
+}
+
+func (p *packageTracker) record(entry GoTestLogLine) {
+	ts := entry.Time.UnixMilli()
+	if p.start == 0 || ts < p.start {
+		p.start = ts
+	}
+	if ts > p.stop {
+		p.stop = ts
+	}
+	appendOutput(entry, &p.output)
+	if s := actionToStatus(entry.Action); s != allure.Unknown && p.status.Less(s) {
+		p.status = s
+	}
+}
+
+func (p *packageTracker) syntheticFailure() (*allure.Result, bool) {
+	if p.status != allure.Failed {
+		return nil, false
+	}
+	const name = "Test Environment Setup"
+	resultID := hash(name)
+	return &allure.Result{
+		Stage:         allure.Finished,
+		Name:          name,
+		FullName:      name,
+		Status:        allure.Broken,
+		StatusDetails: allure.StatusDetail{Message: "Setup failed before tests could run."},
+		Start:         p.start,
+		Stop:          p.stop,
+		UUID:          uuid.New(),
+		HistoryID:     resultID,
+		TestCaseID:    resultID,
+		ContinuousLog: p.output,
+	}, true
+}
+
 type GoTestJsonLinesToAllure struct {
-	results map[string]allure.Result
+	results map[string]*allure.Result
 	env     map[string]string
+
+	topLevelResultIDs  map[string]string
+	suitesWithSubtests map[string]bool
+
+	pkg packageTracker
 }
 
 func (g *GoTestJsonLinesToAllure) Add(logger *slog.Logger, entry GoTestLogLine) {
-	suiteID, runID, stepID := parseTestName(entry.Test)
-	if runID == "" {
-		return
+	suite, run, step := parseTestName(entry.Test)
+	switch {
+	case suite == "":
+		g.pkg.record(entry)
+	case run == "":
+		g.addTopLevelTest(logger, entry, suite)
+	default:
+		g.suitesWithSubtests[suite] = true
+		g.addSubtest(logger, entry, suite, run, step)
 	}
+}
 
-	testName := suiteID + "/" + runID
-	testParameters := extractParamsViaRegex(runID)
-	testNameWithoutParams := withoutParams(testName)
+func (g *GoTestJsonLinesToAllure) addTopLevelTest(logger *slog.Logger, entry GoTestLogLine, suite string) {
+	params := extractParamsViaRegex(suite)
+	nameForHash := withoutParams(suite + "/" + suite)
+	result := g.upsertResult(nameForHash, suite, suite, params, entry)
+	g.topLevelResultIDs[suite] = result.HistoryID
+	g.updateResult(logger, result, entry, suite, "")
+}
+
+func (g *GoTestJsonLinesToAllure) addSubtest(logger *slog.Logger, entry GoTestLogLine, suite, run, step string) {
+	fullName := suite + "/" + run
+	params := extractParamsViaRegex(run)
+	displayName := withoutParams(fullName)
+	result := g.upsertResult(displayName, displayName, fullName, params, entry)
+	g.updateResult(logger, result, entry, fullName, step)
+}
+
+func (g *GoTestJsonLinesToAllure) upsertResult(nameForHash, displayName, fullName string, params []allure.Parameter, entry GoTestLogLine) *allure.Result {
 	resultID := hash(
-		testNameWithoutParams,
-		strings.Join(Map(testParameters, allure.Parameter.String), ","),
+		nameForHash,
+		strings.Join(Map(params, allure.Parameter.String), ","),
 	)
-
-	if _, ok := g.results[resultID]; !ok {
-		result := allure.Result{
-			Stage:      allure.Finished,
-			Name:       testNameWithoutParams,
-			FullName:   testName,
-			Parameters: testParameters,
-			Start:      entry.Time.UnixMilli(),
-			Stop:       entry.Time.UnixMilli(),
-			UUID:       uuid.New(),
-
-			HistoryID:  resultID,
-			TestCaseID: hash(testNameWithoutParams),
-		}
-		for k, v := range g.env {
-			result.Labels = append(result.Labels, allure.Label{Name: k, Value: v})
-			result.Labels = append(result.Labels, allure.Label{Name: strings.ToUpper(k[:1]) + k[1:], Value: v})
-		}
-
-		g.results[resultID] = result
+	if r, ok := g.results[resultID]; ok {
+		return r
 	}
-	result := g.results[resultID]
-	defer func() { g.results[resultID] = result }()
+	result := &allure.Result{
+		Stage:      allure.Finished,
+		Name:       displayName,
+		FullName:   fullName,
+		Parameters: params,
+		Start:      entry.Time.UnixMilli(),
+		Stop:       entry.Time.UnixMilli(),
+		UUID:       uuid.New(),
+		HistoryID:  resultID,
+		TestCaseID: hash(nameForHash),
+	}
+	for k, v := range g.env {
+		result.Labels = append(result.Labels, allure.Label{Name: k, Value: v})
+		result.Labels = append(result.Labels, allure.Label{Name: strings.ToUpper(k[:1]) + k[1:], Value: v})
+	}
+	g.results[resultID] = result
+	return result
+}
 
+func (g *GoTestJsonLinesToAllure) updateResult(logger *slog.Logger, result *allure.Result, entry GoTestLogLine, testName, step string) {
 	result.Start = min(entry.Time.UnixMilli(), result.Start)
 
 	deducedStatus := actionToStatus(entry.Action)
 	if deducedStatus != allure.Unknown {
 		if result.Status.Less(deducedStatus) {
 			result.Status = deducedStatus
-		} else {
-			if result.Status != deducedStatus {
-				logger.Warn("inconsistent status for result", "result", testName, "oldStatus", result.Status, "newStatus", deducedStatus)
-			}
+		} else if result.Status != deducedStatus {
+			logger.Warn("inconsistent status for result", "result", testName, "oldStatus", result.Status, "newStatus", deducedStatus)
 		}
 	}
 
-	if stepID != "" {
-		g.addStep(entry, &result, stepID)
+	if step != "" {
+		g.addStep(entry, result, step)
 	} else {
 		appendOutput(entry, &result.StatusDetails.Message)
 		if entry.Elapsed != nil {
@@ -243,6 +314,19 @@ func (g *GoTestJsonLinesToAllure) Add(logger *slog.Logger, entry GoTestLogLine) 
 		}
 	}
 	appendOutput(entry, &result.ContinuousLog)
+}
+
+func (g *GoTestJsonLinesToAllure) Finalize() {
+	for suite, resultID := range g.topLevelResultIDs {
+		if g.suitesWithSubtests[suite] {
+			delete(g.results, resultID)
+		}
+	}
+	if len(g.results) == 0 {
+		if r, ok := g.pkg.syntheticFailure(); ok {
+			g.results[r.HistoryID] = r
+		}
+	}
 }
 
 func (g *GoTestJsonLinesToAllure) addStep(entry GoTestLogLine, result *allure.Result, stepID string) {
@@ -284,7 +368,7 @@ func (g *GoTestJsonLinesToAllure) WriteResults(dir string) error {
 			if err != nil {
 				return err
 			}
-			defer logFile.Close()
+			defer logFile.Close() //nolint:errcheck
 
 			if _, err := logFile.WriteString(result.ContinuousLog); err != nil {
 				return err
@@ -301,7 +385,7 @@ func (g *GoTestJsonLinesToAllure) WriteResults(dir string) error {
 		if err != nil {
 			return err
 		}
-		defer out.Close()
+		defer out.Close() //nolint:errcheck
 
 		if err := json.NewEncoder(out).Encode(result); err != nil {
 			return err
@@ -342,7 +426,7 @@ func (g *GoTestJsonLinesToAllure) WriteEnvironment(dir string) error {
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer f.Close() //nolint:errcheck
 
 	for key, value := range g.env {
 		if _, err := fmt.Fprintf(f, "%s=%s\n", key, value); err != nil {

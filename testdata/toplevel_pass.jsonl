@@ -1,0 +1,8 @@
+{"Time":"2026-06-30T10:00:00.000+02:00","Action":"start","Package":"e2e"}
+{"Time":"2026-06-30T10:00:00.100+02:00","Action":"run","Package":"e2e","Test":"TestSimple"}
+{"Time":"2026-06-30T10:00:00.100+02:00","Action":"output","Package":"e2e","Test":"TestSimple","Output":"=== RUN   TestSimple\n"}
+{"Time":"2026-06-30T10:00:00.100+02:00","Action":"output","Package":"e2e","Test":"TestSimple","Output":"    tmp_test.go:10: all good\n"}
+{"Time":"2026-06-30T10:00:00.100+02:00","Action":"output","Package":"e2e","Test":"TestSimple","Output":"--- PASS: TestSimple (0.00s)\n"}
+{"Time":"2026-06-30T10:00:00.100+02:00","Action":"pass","Package":"e2e","Test":"TestSimple","Elapsed":0}
+{"Time":"2026-06-30T10:00:00.100+02:00","Action":"output","Package":"e2e","Output":"PASS\n"}
+{"Time":"2026-06-30T10:00:00.200+02:00","Action":"pass","Package":"e2e","Elapsed":0.2}
